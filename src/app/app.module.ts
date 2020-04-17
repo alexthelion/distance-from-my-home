@@ -9,6 +9,8 @@ import {environment} from '../environments/environment';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {TextFieldModule} from "@angular/cdk/text-field";
 import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from "@angular/material/select";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import {MatInputModule} from '@angular/material/input';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     TextFieldModule,
     MatInputModule,
+    MatSelectModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent],

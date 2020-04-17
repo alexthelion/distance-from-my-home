@@ -1,15 +1,25 @@
-<div class="container-fluid px-3 mx-0" >
+<div class="container-fluid px-3 mx-0" dir="rtl">
   <div class="row">
     <div class="col-md-12 d-flex justify-content-center mt-3">
-      <h1>Distance From My Home</h1>
+      <h1>המרחק שלי מהבית</h1>
     </div>
-    <div class="col-md-12">
-      <!-- Material form row -->
-      <mat-form-field>
-        <mat-label>Input</mat-label>
+    <div class="col-md-12 d-flex justify-content-center">
+      <mat-form-field class="mx-3" style="width: 350px">
+        <mat-label>המיקום שלי</mat-label>
         <input matInput>
       </mat-form-field>
-      <!-- Material form row -->
+      <mat-form-field class="mx-3">
+        <mat-label>מרחק</mat-label>
+        <input matInput>
+      </mat-form-field>
+      <mat-form-field class="mx-3">
+        <mat-label>מידת מרחק</mat-label>
+        <mat-select #distanceType value="meters">
+          <mat-option value="meters">מטרים</mat-option>
+          <mat-option value="kilometers">קילומטר</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button color="primary" class="mx-3">הצג מרחק</button>
     </div>
   </div>
 </div>
