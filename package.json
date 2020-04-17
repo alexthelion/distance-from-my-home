@@ -1,6 +1,9 @@
 {
   "name": "distance-from-my-home",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "maintainers": ["Alexander Shimanski"],
+  "author": "Alexander Shimanski",
+  "description": "Application for showing how far you can go outside away from your home",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
