@@ -1,25 +1,29 @@
-<div class="container-fluid px-3 mx-0" dir="rtl">
-  <div class="row">
+<div class="container-fluid px-0 mx-0" dir="rtl">
+  <div class="row" style="background: #3F729B">
     <div class="col-md-12 d-flex justify-content-center mt-3">
-      <h1>המרחק שלי מהבית</h1>
+      <h1 class="text-white">המרחק שלי מהבית</h1>
     </div>
-    <div class="col-md-12 d-flex justify-content-center">
-      <mat-form-field class="mx-3" style="width: 350px">
-        <mat-label>המיקום שלי</mat-label>
-        <input matInput>
-      </mat-form-field>
-      <mat-form-field class="mx-3">
-        <mat-label>מרחק</mat-label>
-        <input matInput>
-      </mat-form-field>
-      <mat-form-field class="mx-3">
-        <mat-label>מידת מרחק</mat-label>
-        <mat-select #distanceType value="meters">
-          <mat-option value="meters">מטרים</mat-option>
-          <mat-option value="kilometers">קילומטר</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <button mat-raised-button color="primary" class="mx-3">הצג מרחק</button>
+    <div class="col-md-12 d-flex justify-content-center" dir="rtl">
+      <mat-grid-list cols="4"  class="pt-3"
+                     style="width: 100%; text-align: right; padding-right: 25%"
+                     [style.background]="'#1C2331'" dir="rtl">
+        <mat-form-field class="mx-3" style="width: 350px">
+          <mat-label>המיקום שלי</mat-label>
+          <input matInput>
+        </mat-form-field>
+        <mat-form-field class="mx-3">
+          <mat-label>מרחק</mat-label>
+          <input matInput>
+        </mat-form-field>
+        <mat-form-field class="mx-3">
+          <mat-label>מידת מרחק</mat-label>
+          <mat-select #distanceType value="meters">
+            <mat-option value="meters">מטרים</mat-option>
+            <mat-option value="kilometers">קילומטר</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button color="primary" class="mx-3">הצג מרחק</button>
+      </mat-grid-list>
     </div>
   </div>
 </div>
