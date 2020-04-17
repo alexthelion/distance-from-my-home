@@ -4,12 +4,14 @@
       <h1 class="text-white">המרחק שלי מהבית</h1>
     </div>
     <div class="col-md-12 d-flex justify-content-center" dir="rtl">
-      <mat-grid-list cols="4"  class="pt-3"
+      <mat-grid-list cols="4" class="pt-3"
                      style="width: 100%; text-align: right; padding-right: 25%"
                      [style.background]="'#1C2331'" dir="rtl">
         <mat-form-field class="mx-3" style="width: 350px">
           <mat-label>המיקום שלי</mat-label>
-          <input matInput>
+          <input matInput (keydown.enter)="$event.preventDefault()"
+                 autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
+                 #search>
         </mat-form-field>
         <mat-form-field class="mx-3">
           <mat-label>מרחק</mat-label>
@@ -24,6 +26,17 @@
         </mat-form-field>
         <button mat-raised-button color="primary" class="mx-3">הצג מרחק</button>
       </mat-grid-list>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <google-map #map width="100%" height="600px" [center]="myPosition">
+        <map-marker
+          *ngFor="let marker of markers"
+          [position]="marker.position"
+          [title]="marker.title">
+        </map-marker>
+      </google-map>
     </div>
   </div>
 </div>

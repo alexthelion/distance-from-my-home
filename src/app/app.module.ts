@@ -12,6 +12,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from "@angular/material/select";
 import {MatButtonModule} from "@angular/material/button";
 import {MatGridListModule} from "@angular/material/grid-list";
+import {GoogleMapsModule} from "@angular/google-maps";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {MatGridListModule} from "@angular/material/grid-list";
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
-    MatGridListModule
+    MatGridListModule,
+    GoogleMapsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
