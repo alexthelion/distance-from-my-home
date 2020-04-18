@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
 import {GoogleMap, MapCircle} from "@angular/google-maps";
 import {MatSelect, MatSelectChange} from "@angular/material/select";
+import {SwUpdate} from "@angular/service-worker";
 
 @Component({
   selector: 'app-root',
@@ -22,8 +23,10 @@ export class AppComponent implements OnInit, AfterViewInit {
     {type: 'Kilometer', coefficient: 1000, display: 'קילומטר'}];
   selectedDistanceType: any;
 
-  constructor(private ngZone: NgZone) {
+  constructor(private ngZone: NgZone,
+              private swUpdate: SwUpdate) {
     this.selectedDistanceType = this.distanceTypes[0];
+    this.checkVersionUpdate();
   }
 
   ngOnInit(): void {
@@ -82,5 +85,15 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   distanceTypesChanged(event: MatSelectChange): void {
     this.selectedDistanceType = this.distanceTypes.find(val => val.type === event.value);
+  }
+
+  private checkVersionUpdate(): void {
+    if (this.swUpdate.isEnabled) {
+      this.swUpdate.available.subscribe(() => {
+        if(confirm("New version available. Load New Version?")) {
+          window.location.reload();
+        }
+      });
+    }
   }
 }
