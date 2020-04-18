@@ -9,22 +9,21 @@
                      [style.background]="'#1C2331'" dir="rtl">
         <mat-form-field class="mx-3" style="width: 350px">
           <mat-label>המיקום שלי</mat-label>
-          <input matInput (keydown.enter)="$event.preventDefault()"
+          <input matInput (keydown.enter)="$event.preventDefault()" id="search"
                  autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
                  #search>
         </mat-form-field>
         <mat-form-field class="mx-3">
           <mat-label>מרחק</mat-label>
-          <input matInput>
+          <input matInput [(ngModel)]="radius">
         </mat-form-field>
         <mat-form-field class="mx-3">
           <mat-label>מידת מרחק</mat-label>
-          <mat-select #distanceType value="meters">
-            <mat-option value="meters">מטרים</mat-option>
-            <mat-option value="kilometers">קילומטר</mat-option>
+          <mat-select [value]="distanceTypes[0].type" (selectionChange)="distanceTypesChanged($event)">
+            <mat-option *ngFor="let type of distanceTypes" [value]="type.type">{{type.display}}</mat-option>
           </mat-select>
         </mat-form-field>
-        <button mat-raised-button color="primary" class="mx-3">הצג מרחק</button>
+        <button mat-raised-button color="primary" class="mx-3" (click)="displayRadius()">הצג רדיוס</button>
       </mat-grid-list>
     </div>
   </div>
@@ -36,6 +35,10 @@
           [position]="marker.position"
           [title]="marker.title">
         </map-marker>
+        <map-circle [center]="myPosition"
+                    [options]="circleOptions"
+                    #mapCircle>
+        </map-circle>
       </google-map>
     </div>
   </div>

@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
-import {GoogleMap} from "@angular/google-maps";
+import {GoogleMap, MapCircle} from "@angular/google-maps";
+import {MatSelect, MatSelectChange} from "@angular/material/select";
 
 @Component({
   selector: 'app-root',
@@ -10,10 +11,19 @@ export class AppComponent implements OnInit, AfterViewInit {
   title = 'distanceFromMyHome';
   myPosition: google.maps.LatLngLiteral;
   @ViewChild('map') googleMap: GoogleMap;
+  @ViewChild('mapCircle', {static: false}) mapCircle: MapCircle;
   markers: any[] = [];
-  @ViewChild('search')  public searchElementRef: ElementRef;
+  @ViewChild('search', {static: true}) public searchElementRef: ElementRef;
+  @ViewChild('distanceTypeSelect') public matSelect: MatSelect;
+  private autocomplete: google.maps.places.Autocomplete;
+  radius: string = "0";
+  circleOptions: google.maps.CircleOptions;
+  distanceTypes = [{type: 'Meter', coefficient: 1, display: 'מטר'},
+    {type: 'Kilometer', coefficient: 1000, display: 'קילומטר'}];
+  selectedDistanceType: any;
 
   constructor(private ngZone: NgZone) {
+    this.selectedDistanceType = this.distanceTypes[0];
   }
 
   ngOnInit(): void {
@@ -50,13 +60,11 @@ export class AppComponent implements OnInit, AfterViewInit {
     const options = {
       componentRestrictions: {country: "il"}
     };
-    let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, options);
-    autocomplete.addListener("place_changed", () => {
+    this.autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, options);
+    this.autocomplete.addListener("place_changed", () => {
       this.ngZone.run(() => {
-        // some details
-        const place: google.maps.places.PlaceResult = autocomplete.getPlace();
+        const place: google.maps.places.PlaceResult = this.autocomplete.getPlace();
         const address = place.formatted_address;
-        console.log("found address: " + address);
         this.myPosition = {
           lat: place.geometry.location.lat(),
           lng: place.geometry.location.lng()
@@ -67,4 +75,12 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
 
+  displayRadius(): void {
+    const radius = +this.radius * this.selectedDistanceType.coefficient;
+    this.circleOptions = {radius: radius};
+  }
+
+  distanceTypesChanged(event: MatSelectChange): void {
+    this.selectedDistanceType = this.distanceTypes.find(val => val.type === event.value);
+  }
 }

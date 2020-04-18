@@ -13,6 +13,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatButtonModule} from "@angular/material/button";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {GoogleMapsModule} from "@angular/google-maps";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {GoogleMapsModule} from "@angular/google-maps";
     MatSelectModule,
     MatButtonModule,
     MatGridListModule,
-    GoogleMapsModule
+    GoogleMapsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
