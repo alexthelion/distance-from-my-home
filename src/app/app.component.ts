@@ -46,7 +46,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.findAddress();
     if (this.screenWidth <= this.MOBILE_MAX_WIDTH) {
-      this.googleMap.zoom = 16;
+      this.googleMap.zoom = 15;
     }
   }
 
@@ -108,7 +108,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   getScreenSize(event?) {
     this.screenWidth = window.innerWidth;
     if (this.screenWidth > this.MOBILE_MAX_WIDTH) {
-      this.screenHeight = '78vh';
+      this.screenHeight = '73vh';
     }
   }
 }
