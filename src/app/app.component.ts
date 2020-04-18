@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, HostListener, NgZone, OnInit, ViewChild} from '@angular/core';
 import {GoogleMap, MapCircle} from "@angular/google-maps";
 import {MatSelect, MatSelectChange} from "@angular/material/select";
 import {SwUpdate} from "@angular/service-worker";
@@ -22,11 +22,13 @@ export class AppComponent implements OnInit, AfterViewInit {
   distanceTypes = [{type: 'Meter', coefficient: 1, display: 'מטר'},
     {type: 'Kilometer', coefficient: 1000, display: 'קילומטר'}];
   selectedDistanceType: any;
+  screenHeight: any = undefined;
 
   constructor(private ngZone: NgZone,
               private swUpdate: SwUpdate) {
     this.selectedDistanceType = this.distanceTypes[0];
     this.checkVersionUpdate();
+    this.getScreenSize();
   }
 
   ngOnInit(): void {
@@ -94,6 +96,14 @@ export class AppComponent implements OnInit, AfterViewInit {
           window.location.reload();
         }
       });
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+    const screenWidth = window.innerWidth;
+    if (screenWidth > 768) {
+      this.screenHeight = '78vh';
     }
   }
 }

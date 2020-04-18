@@ -1,10 +1,10 @@
 <div class="container-fluid px-0 mx-0" dir="rtl">
-  <div class="row mb-2" style="background: #3F729B">
+  <div class="row" style="background: #3F729B">
     <div class="col-md-12 d-flex justify-content-center mt-3">
       <h1 class="text-white">המרחק שלי מהבית</h1>
     </div>
     <div class="col-md-12 d-flex justify-content-center" dir="rtl" style="background: #1C2331">
-      <mat-grid-list cols="12" class="pt-3" dir="rtl">
+      <mat-grid-list cols="12" class="pt-3" dir="rtl" style="text-align: right">
         <mat-form-field class="mx-3">
           <mat-label>המיקום שלי</mat-label>
           <input matInput (keydown.enter)="$event.preventDefault()" id="search"
@@ -26,8 +26,8 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12">
-      <google-map #map width="100%" height="78vh" [center]="myPosition">
+    <div class="col-md-12 pl-0">
+      <google-map #map width="99%" [center]="myPosition" [height]="this.screenHeight">
         <map-marker
           *ngFor="let marker of markers"
           [position]="marker.position"
