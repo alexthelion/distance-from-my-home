@@ -1,4 +1,4 @@
-<div class="container-fluid px-0 mx-0" dir="rtl">
+<div class="container-fluid" dir="rtl">
   <div class="row" style="background: #3F729B">
     <div class="col-md-12 d-flex justify-content-center mt-3">
       <h1 class="text-white">המרחק שלי מהבית</h1>
@@ -26,8 +26,8 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12 pl-0">
-      <google-map #map width="99%" [center]="myPosition" [height]="this.screenHeight">
+    <div class="col-md-12 pl-0 pr-0">
+      <google-map #map width="100%" [center]="myPosition" [height]="this.screenHeight">
         <map-marker
           *ngFor="let marker of markers"
           [position]="marker.position"

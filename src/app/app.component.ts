@@ -23,6 +23,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     {type: 'Kilometer', coefficient: 1000, display: 'קילומטר'}];
   selectedDistanceType: any;
   screenHeight: any = undefined;
+  private screenWidth: number;
+  private readonly MOBILE_MAX_WIDTH = 768;
 
   constructor(private ngZone: NgZone,
               private swUpdate: SwUpdate) {
@@ -43,6 +45,9 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.findAddress();
+    if (this.screenWidth <= this.MOBILE_MAX_WIDTH) {
+      this.googleMap.zoom = 16;
+    }
   }
 
   private setCurrentPositionMarker(address?: string): void {
@@ -101,8 +106,8 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
-    const screenWidth = window.innerWidth;
-    if (screenWidth > 768) {
+    this.screenWidth = window.innerWidth;
+    if (this.screenWidth > this.MOBILE_MAX_WIDTH) {
       this.screenHeight = '78vh';
     }
   }
